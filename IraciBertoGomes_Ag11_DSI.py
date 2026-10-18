@@ -1,63 +1,71 @@
 """
-Atividade: Controle de Níveis de Água - Agenda 11
+=============================================================================
+CURSO TÉCNICO EM DESENVOLVIMENTO DE SISTEMAS - ETEC / CPS
 Componente Curricular: Desenvolvimento de Sistemas I (DS I)
-Curso Técnico em Desenvolvimento de Sistemas - ETEC / CPS
+Atividade da Agenda 11: Controle de Níveis de Água no Reservatório
 Estudante: Iraci Berto Gomes
 Arquivo de Entrega: IraciBertoGomes_Ag11_DSI.py
 
-Competência:
-4. Elaborar sistemas aplicando princípios e paradigmas de programação.
-
-Habilidades:
-4.1 Codificar programas, utilizando técnica de programação estruturada.
-4.2 Depurar e versionar programas, utilizando ambiente de desenvolvimento integrado.
+CONCEITOS APLICADOS DAS APOSTILAS DO CURSO (AGENDAS 1 A 11):
+- Agenda 02 e 03: Variáveis, tipos de dados primitivos e f-strings.
+- Agenda 04 e 05: Versionamento do código com Git e GitHub.
+- Agenda 06 e 07: Estruturas de Decisão com if, elif e else.
+- Agenda 08: Estruturas de Repetição com for e range().
+- Agenda 09: Estruturas de Dados - Listas ([]), índices e função len().
+- Agenda 10: Funções com retorno (return) e Procedimentos (SRP).
+- Agenda 11: Bibliotecas padrão (os, sys, time) e externa (colorama).
+=============================================================================
 """
 
-import os
-import sys
-import time
-from colorama import init, Fore, Style, Back
+# ---------------------------------------------------------------------------
+# AGENDA 11: IMPORTAÇÃO DE BIBLIOTECAS (Padrão e Externas)
+# ---------------------------------------------------------------------------
+import os               # Biblioteca padrão: interação com o sistema operacional
+import sys              # Biblioteca padrão: recursos do ambiente Python
+import time             # Biblioteca padrão: controle de intervalos e pausas (time.sleep)
+from colorama import Fore, Style  # Biblioteca externa: cores e estilos no terminal
 
-# Configuração de suporte a UTF-8 no terminal Windows para acentuação perfeita
+# Configuração de compatibilidade de codificação UTF-8 para o console Windows
 if sys.platform == 'win32':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except AttributeError:
         pass
 
-# Inicializa o colorama.
-# autoreset=False permite demonstrar explicitamente o controle de restauração do padrão do terminal (Style.RESET_ALL)
-init(autoreset=False)
 
-
-# ====================================================================
-# FUNÇÕES E PROCEDIMENTOS DO SISTEMA
-# ====================================================================
+# ---------------------------------------------------------------------------
+# AGENDA 10: PROCEDIMENTOS DE INTERFACE E APRESENTAÇÃO (Sem retorno - None)
+# ---------------------------------------------------------------------------
 
 def limpar_tela():
     """
-    Procedimento para limpar o terminal de forma multiplataforma (Windows e Linux/Mac).
-    Encapsulado em função para evitar efeitos colaterais na importação.
+    Procedimento para limpar o terminal de forma multiplataforma (Agenda 10 e 11).
+    Utiliza a biblioteca 'os' estudada na Agenda 11.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def exibir_cabecalho():
     """
-    Procedimento que imprime o cabeçalho oficial do sistema no terminal.
+    Procedimento que exibe o cabeçalho do sistema de monitoramento (Agenda 10).
+    Aplica formatação com a biblioteca colorama (Agenda 11).
     """
-    print(Style.BRIGHT + Fore.CYAN + "=" * 68)
-    print("      SISTEMA DE MONITORAMENTO DE NÍVEIS DE ÁGUA - RESERVATÓRIO")
-    print("             Telemetria e Controle de Risco Operacional")
-    print("=" * 68 + Style.RESET_ALL)
+    print(Style.BRIGHT + Fore.CYAN + "=" * 65)
+    print("   SISTEMA DE MONITORAMENTO DE NÍVEIS DE ÁGUA - RESERVATÓRIO")
+    print("        Telemetria e Controle Automatizado em Terminal")
+    print("=" * 65 + Style.RESET_ALL)
     print()
 
 
-def definir_cor_nivel(nivel):
+# ---------------------------------------------------------------------------
+# AGENDA 10 & 11: FUNÇÃO COM RETORNO PARA DEFINIR A COR (Regra da Atividade)
+# ---------------------------------------------------------------------------
+
+def definir_cor_mensagem(nivel):
     """
-    Função com Retorno (Responsabilidade Única - SRP):
-    Define e retorna o código de cor da biblioteca colorama correspondente
-    ao nível informado, seguindo rigorosamente a tabela de risco da atividade:
+    Função com retorno (Agenda 10):
+    Responsável estritamente por definir e retornar a cor da biblioteca colorama
+    conforme o nível de água informado, seguindo a tabela de risco da Agenda 11:
 
     - Nível 1: Muito baixo (crítico) -> Vermelho (Fore.RED)
     - Nível 2: Baixo                -> Amarelo  (Fore.YELLOW)
@@ -65,11 +73,7 @@ def definir_cor_nivel(nivel):
     - Nível 4: Alto                 -> Ciano    (Fore.CYAN)
     - Nível 5: Muito alto (alerta)  -> Azul     (Fore.BLUE)
 
-    Parâmetros:
-        nivel (int): Nível de água do reservatório (1 a 5).
-
-    Retorno:
-        str: Código de cor ANSI da biblioteca colorama.
+    Aplica estruturas condicionais if, elif e else estudadas nas Agendas 06 e 07.
     """
     if nivel == 1:
         return Fore.RED
@@ -82,113 +86,89 @@ def definir_cor_nivel(nivel):
     elif nivel == 5:
         return Fore.BLUE
     else:
-        # Cor neutra de segurança caso seja informado um nível fora da escala
         return Fore.WHITE
 
 
-def gerar_barra_nivel(nivel, max_nivel=5):
-    """
-    Função utilitária que gera uma barra visual ASCII para o medidor de nível.
-    Totalmente compatível com qualquer terminal Windows (sem caracteres não-mapeados).
+# ---------------------------------------------------------------------------
+# AGENDA 10 & 11: PROCEDIMENTO PARA EXIBIR A MENSAGEM COM COR E RESTAURAR
+# ---------------------------------------------------------------------------
 
-    Exemplo para nível 3: [###--] 60%
+def exibir_situacao_reservatorio(nivel, situacao):
     """
-    cheio = "#" * nivel
-    vazio = "-" * (max_nivel - nivel)
-    porcentagem = (nivel / max_nivel) * 100
-    return f"[{cheio}{vazio}] {porcentagem:>3.0f}%"
-
-
-def exibir_alerta_nivel(item_reservatorio):
-    """
-    Procedimento responsável por formatar e imprimir na tela a situação
-    atual do reservatório com a cor correspondente e imediatamente
-    restaurar o estilo padrão do terminal.
+    Procedimento que exibe a situação atual do reservatório com a cor correspondente
+    e restaura imediatamente o estilo padrão do terminal (Agenda 10 e 11).
 
     Parâmetros:
-        item_reservatorio (dict): Dicionário contendo os dados do nível.
+        nivel (int): Nível de água (1 a 5).
+        situacao (str): Mensagem de alerta/estado da água.
     """
-    nivel = item_reservatorio["nivel"]
-    situacao = item_reservatorio["situacao"]
-    detalhes = item_reservatorio["detalhes"]
+    # 1. Obtém a cor através da função com retorno (Agenda 10)
+    cor = definir_cor_mensagem(nivel)
 
-    # 1. Chamada da função que define a cor conforme o nível
-    cor = definir_cor_nivel(nivel)
-    barra = gerar_barra_nivel(nivel)
-
-    # 2. Exibição da mensagem no terminal com a cor correspondente
-    print(cor + Style.BRIGHT + f">> Nível {nivel}: {situacao:<22}" + Style.RESET_ALL, end=" ")
-    print(cor + f"Escala: {barra:<14}" + Style.RESET_ALL, end=" ")
-    print(Style.DIM + f"| Status: {detalhes}" + Style.RESET_ALL)
-
-    # 3. Restaura o estilo padrão do terminal após a exibição da mensagem
-    print(Style.RESET_ALL, end="")
+    # 2. Exibe no terminal a situação com a cor correspondente (Agenda 11)
+    # 3. Restaura o estilo padrão do terminal usando Style.RESET_ALL (Agenda 11)
+    print(cor + Style.BRIGHT + f">> Nível {nivel}: {situacao}" + Style.RESET_ALL)
 
 
-def simular_monitoramento(lista_niveis, intervalo_segundos=0.6):
+# ---------------------------------------------------------------------------
+# AGENDA 08, 09, 10 & 11: PROCEDIMENTO DE SIMULAÇÃO EM TEMPO REAL
+# ---------------------------------------------------------------------------
+
+def simular_monitoramento(lista_niveis, lista_mensagens, intervalo_segundos=1):
     """
-    Procedimento que simula o ciclo de monitoramento do reservatório,
-    percorrendo todos os níveis da lista e exibindo os alertas coloridos.
+    Procedimento que percorre as listas de dados simulando um ambiente real
+    de monitoramento de sensores em tempo real.
 
-    Parâmetros:
-        lista_niveis (list): Lista com os dicionários de cada nível.
-        intervalo_segundos (float): Tempo de espera entre cada leitura.
+    Aplica:
+    - Agenda 08: Estrutura de repetição for e função range().
+    - Agenda 09: Listas, índices e a função len() para controle do percurso.
+    - Agenda 11: Biblioteca time com time.sleep() para criar pausas pedagógicas.
     """
-    print(Style.BRIGHT + "Iniciando ciclo de telemetria e diagnóstico dos sensores...\n" + Style.RESET_ALL)
-    print("-" * 68)
+    print(Style.BRIGHT + "Iniciando leitura e diagnóstico dos sensores em tempo real...\n" + Style.RESET_ALL)
+    print("-" * 65)
 
-    for item in lista_niveis:
-        exibir_alerta_nivel(item)
+    # Percorre as listas pelo índice utilizando len() e range() (Agenda 08 e 09)
+    for i in range(len(lista_niveis)):
+        nivel_atual = lista_niveis[i]
+        mensagem_atual = lista_mensagens[i]
+
+        # Chama o procedimento de exibição colorida (Agenda 10 e 11)
+        exibir_situacao_reservatorio(nivel_atual, mensagem_atual)
+
+        # Pausa na execução com a biblioteca time (Agenda 11)
         time.sleep(intervalo_segundos)
 
-    print("-" * 68)
+    print("-" * 65)
     print()
 
 
-# ====================================================================
+# ---------------------------------------------------------------------------
 # PROGRAMA PRINCIPAL
-# ====================================================================
+# ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # Limpa a tela para exibição limpa e profissional
+    # Limpa a tela do console (Agenda 10 e 11)
     limpar_tela()
 
     # Exibe cabeçalho formatado
     exibir_cabecalho()
 
-    # 1. Utilização de uma lista para armazenar os níveis e situações do reservatório
-    niveis_reservatorio = [
-        {
-            "nivel": 1,
-            "situacao": "Muito baixo (crítico)",
-            "detalhes": "Válvulas de emergência abertas. Risco iminente de desabastecimento."
-        },
-        {
-            "nivel": 2,
-            "situacao": "Baixo",
-            "detalhes": "Bomba de captação secundária acionada. Atenção para reposição."
-        },
-        {
-            "nivel": 3,
-            "situacao": "Médio",
-            "detalhes": "Capacidade estável. Volume ideal para consumo planejado."
-        },
-        {
-            "nivel": 4,
-            "situacao": "Alto",
-            "detalhes": "Reservatório com margem ampla. Entrada de água operando em 50%."
-        },
-        {
-            "nivel": 5,
-            "situacao": "Muito alto (alerta)",
-            "detalhes": "Capacidade máxima atingida! Vertedouro ativado contra transbordamento."
-        }
+    # AGENDA 09: ESTRUTURA DE DADOS - LISTAS
+    # Criação de listas com nomes no plural conforme as boas práticas da Agenda 09.
+    # Armazenam os 5 níveis e as 5 mensagens de situação do reservatório.
+    niveis = [1, 2, 3, 4, 5]
+
+    mensagens = [
+        "Muito baixo (crítico) - Risco de desabastecimento",
+        "Baixo - Atenção para acionamento de reposição",
+        "Médio - Volume ideal para operação regular",
+        "Alto - Nível seguro com margem satisfatória",
+        "Muito alto (alerta) - Risco iminente de transbordamento"
     ]
 
-    # 2. Executa a simulação de monitoramento
-    simular_monitoramento(niveis_reservatorio, intervalo_segundos=0.6)
+    # AGENDA 11: Executa a simulação do ambiente real de monitoramento
+    simular_monitoramento(niveis, mensagens, intervalo_segundos=1)
 
-    # 3. Restauração explícita do estilo padrão do terminal (conforme orientação)
-    print(Style.RESET_ALL + Fore.RESET + Back.RESET, end="")
-    print(Fore.GREEN + Style.BRIGHT + "[OK] Ciclo de monitoramento concluido com sucesso!" + Style.RESET_ALL)
-    print("Estilo padrao do terminal restaurado com sucesso.\n")
+    # AGENDA 11: Restauração explícita final do terminal com Style.RESET_ALL
+    print(Fore.GREEN + Style.BRIGHT + "[OK] Ciclo de monitoramento concluído com sucesso!" + Style.RESET_ALL)
+    print("Estilo padrão do terminal devidamente restaurado.\n")
