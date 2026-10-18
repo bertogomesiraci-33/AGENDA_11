@@ -71,6 +71,12 @@ O sistema integra os conteúdos ensinados nas **Apostilas de Desenvolvimento de 
 
 ## 💻 4. Evidência de Execução Real no Terminal
 
+<!-- ================================================================= -->
+<!-- INSIRA O CAMINHO DA SUA IMAGEM DENTRO DOS PARÊNTESES ABAIXO:       -->
+![Captura do Resultado no Terminal](COLE_AQUI_O_CAMINHO_DA_SUA_IMAGEM)
+<!-- Exemplo: ![Captura do Resultado no Terminal](capturar-resultado-terminal.PNG) -->
+<!-- ================================================================= -->
+
 ```text
 ====================================================================
       SISTEMA DE MONITORAMENTO DE NÍVEIS DE ÁGUA - RESERVATÓRIO
