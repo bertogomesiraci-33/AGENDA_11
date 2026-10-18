@@ -15,7 +15,7 @@ RECURSOS EXIGIDOS E APLICADOS NESTE SCRIPT:
 """
 
 # ---------------------------------------------------------------------------
-# AGENDA 11: IMPORTAÇÃO DAS BIBLIOTECAS (Padrão e Externas)
+# IMPORTAÇÃO DAS BIBLIOTECAS (Padrão e Externas)
 # ---------------------------------------------------------------------------
 import os               # Biblioteca padrão: limpeza de terminal (os.system)
 import sys              # Biblioteca padrão: codificação UTF-8
@@ -162,14 +162,14 @@ if __name__ == "__main__":
     limpar_tela()
     exibir_cabecalho()
 
-    # 1. Aplicação da biblioteca MATH (Agenda 11):
+    # 1. Aplicação da biblioteca MATH 
     # Calcula e exibe a capacidade física do reservatório cilíndrico (raio=2.5m, altura=4.0m)
     capacidade_total = calcular_capacidade_reservatorio(raio_metros=2.5, altura_metros=4.0)
     print(f"Capacidade Total Calculada (math.pi e math.pow): {capacidade_total:,.0f} litros".replace(",", "."))
     print("-" * 68)
     print()
 
-    # 2. Aplicação de LISTAS (Agenda 09):
+    # 2. Aplicação de LISTAS 
     # Duas listas com nomes no plural armazenando os níveis e as mensagens de alerta
     niveis = [1, 2, 3, 4, 5]
 
@@ -181,12 +181,12 @@ if __name__ == "__main__":
         "Muito alto (alerta) - Risco de transbordamento! Vertedouro ativado"
     ]
 
-    # 3. Aplicação do laço FOR e das LISTAS (Agendas 08 e 09):
+    # 3. Aplicação do laço FOR e das LISTAS:
     simular_ciclo_completo(niveis, mensagens, intervalo_segundos=0.8)
 
-    # 4. Aplicação da biblioteca RANDOM (Agenda 11):
+    # 4. Aplicação da biblioteca RANDOM:
     simular_leitura_aleatoria_sensor(niveis, mensagens)
 
-    # 5. Aplicação da biblioteca COLORAMA (Agenda 11) na restauração final:
+    # 5. Aplicação da biblioteca COLORAMA - na restauração final:
     print(Fore.GREEN + Style.BRIGHT + "[OK] Monitoramento concluído com sucesso!" + Style.RESET_ALL)
     print("Estilo padrão do terminal devidamente restaurado com Style.RESET_ALL.\n")
