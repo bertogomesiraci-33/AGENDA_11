@@ -1,11 +1,6 @@
 """
 =============================================================================
-CURSO TÉCNICO EM DESENVOLVIMENTO DE SISTEMAS - ETEC / CPS
-Componente Curricular: Desenvolvimento de Sistemas I (DS I)
 Atividade da Agenda 11: Controle de Níveis de Água no Reservatório
-Estudante: Iraci Berto Gomes
-Arquivo de Entrega: IraciBertoGomes_Ag11_DSI.py
-
 RECURSOS EXIGIDOS E APLICADOS NESTE SCRIPT:
 1. FOR: Estrutura de repetição para percorrer as listas de medição.
 2. LISTAS: Coleções ordenadas armazenando os 5 níveis e mensagens.
