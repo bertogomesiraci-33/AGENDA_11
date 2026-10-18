@@ -1,17 +1,33 @@
 <div align="center">
-  <img src="reservatorio_icon.jpg" alt="Ícone do Reservatório de Água" width="220" style="border-radius: 20px; margin-bottom: 12px;" />
 
-  # 🚰 Sistema de Monitoramento de Níveis de Água
-  ### Telemetria e Controle Automatizado de Reservatório Industrial
-  
-  [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-  [![Colorama](https://img.shields.io/badge/Colorama-0.4.6-green.svg)](https://pypi.org/project/colorama/)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-  [![Status: Concluído](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen.svg)]()
+# 🚰 Sistema de Monitoramento de Níveis de Água
+### 💧 Telemetria e Controle Automatizado de Reservatório Industrial 💧
 
-  <p><b>Componente Curricular:</b> Desenvolvimento de Sistemas I (DS I) — Agenda 11</p>
-  <p><b>Instituição:</b> ETEC / Centro Paula Souza (CPS) | <b>Estudante:</b> Iraci Berto Gomes</p>
-  <p><b>Arquivo Oficial de Entrega:</b> <code>IraciBertoGomes_Ag11_DSI.py</code></p>
+```text
+       _______________________
+      /                       \
+     |   RESERVATÓRIO SMART    |
+     |=========================|
+     | [5] ############### 100%|  -> AZUL (Alerta Máximo)
+     | [4] ############---  80%|  -> CIANO (Nível Alto)
+     | [3] #########------  60%|  -> VERDE (Nível Médio)
+     | [2] ######---------  40%|  -> AMARELO (Nível Baixo)
+     | [1] ###------------  20%|  -> VERMELHO (Nível Crítico)
+     |=========================|
+     \_________________________/
+                 | |
+             [ VÁLVULA ]
+```
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Colorama](https://img.shields.io/badge/Colorama-0.4.6-green.svg)](https://pypi.org/project/colorama/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status: Concluído](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen.svg)]()
+
+<p><b>Componente Curricular:</b> Desenvolvimento de Sistemas I (DS I) — Agenda 11</p>
+<p><b>Instituição:</b> ETEC / Centro Paula Souza (CPS) | <b>Estudante:</b> Iraci Berto Gomes</p>
+<p><b>Arquivo Oficial de Entrega:</b> <code>IraciBertoGomes_Ag11_DSI.py</code></p>
+
 </div>
 
 ---
@@ -20,7 +36,7 @@
 
 Este projeto consiste em um software de **telemetria e monitoramento de reservatório de água**, desenvolvido para execução autônoma em terminal, simulando um ambiente de automação industrial sem necessidade de intervenção do usuário.
 
-O sistema integra os conteúdos ensinados nas **Apostilas de Desenvolvimento de Sistemas I (Agendas 01 a 11)**:
+O sistema integra os conteúdos ensinados nas **Apostilas de Desenvolvimento de Sistemas I (Agendas 01 a 11)** do Centro Paula Souza:
 * **Agenda 02 e 03:** Variáveis primitivas, tipagem e exibição via `f-strings`.
 * **Agenda 04 e 05:** Controle de versão profissional com Git e GitHub.
 * **Agenda 06 e 07:** Estruturas de decisão encadeadas (`if`, `elif`, `else`).
