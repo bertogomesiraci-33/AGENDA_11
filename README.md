@@ -7,7 +7,7 @@
 
 > **Componente Curricular:** Desenvolvimento de Sistemas I (DS I)  
 > **Instituição:** ETEC / Centro Paula Souza (CPS)  
-> **Agenda:** 11 — Estruturas de Dados (Listas), Funções e Bibliotecas de Terminal (`colorama`)  
+> **Agenda:** 11 — Bibliotecas (`colorama`, `time`, `os`, `sys`) integrando Listas (Agenda 9) e Funções (Agenda 10)  
 > **Estudante:** Iraci Berto Gomes  
 > **Arquivo de Entrega:** `IraciBertoGomes_Ag11_DSI.py`
 
@@ -15,108 +15,75 @@
 
 ## 📌 1. Visão Geral do Projeto
 
-Este projeto consiste em um software de **telemetria e monitoramento em tempo real de reservatórios de água**, desenvolvido para execução em linha de comando (terminal). 
+Este projeto consiste em um software de **telemetria e monitoramento de reservatório de água**, desenvolvido para terminal em linguagem Python.
 
-O sistema simula um ambiente industrial de controle de níveis de água, avaliando o volume do reservatório em **5 níveis progressivos de criticidade**. A cada nível, o operador recebe um alerta visual enriquecido por cores padronizadas via biblioteca `colorama`, escala gráfica percentual e diagnóstico operacional do sistema hidráulico, restaurando sempre as propriedades originais do terminal após cada ciclo.
+O código foi construído com base estrita na ementa e metodologia pedagógica ensinada nas **Apostilas de Desenvolvimento de Sistemas I (Agendas 01 a 11)** do Centro Paula Souza:
+
+* **Agendas 02 e 03:** Variáveis primitivas, manipulação de texto e interpolação via `f-strings`.
+* **Agendas 04 e 05:** Versionamento profissional com Git e GitHub.
+* **Agendas 06 e 07:** Estruturas de decisão encadeadas (`if`, `elif`, `else`).
+* **Agenda 08:** Estruturas de repetição com `for` e `range()`.
+* **Agenda 09:** Estruturas de dados — **Listas (`[]`)**, indexação sequencial `[i]` e uso da função `len()`.
+* **Agenda 10:** Modularização com **Funções com retorno (`return`)** e **Procedimentos** (Princípio da Responsabilidade Única - SRP).
+* **Agenda 11:** Bibliotecas padrão (`os`, `sys`, `time`) e biblioteca externa `colorama` (`Fore`, `Style`, `Style.RESET_ALL`).
 
 ---
 
-## 🎯 2. Tabela Oficial de Níveis e Cores de Alerta
+## 🎯 2. Tabela de Níveis, Situações e Cores da Atividade
 
-Conforme as diretrizes da atividade, o sistema implementa a seguinte escala cromática e de risco:
-
-| Nível do Reservatório | Situação Operacional | Cor Sugerida (`colorama`) | Código ANSI | Ação Automática do Sistema |
+| Nível do Reservatório | Situação Operacional | Cor Sugerida | Constante Colorama | Diagnóstico Operacional |
 | :---: | :--- | :---: | :---: | :--- |
-| **Nível 1** | **Muito baixo (crítico)** | **Vermelho** | `Fore.RED` | Válvulas de emergência abertas; risco de desabastecimento. |
-| **Nível 2** | **Baixo** | **Amarelo** | `Fore.YELLOW` | Bomba de captação secundária acionada; atenção para reposição. |
-| **Nível 3** | **Médio** | **Verde** | `Fore.GREEN` | Capacidade estável; volume ideal para consumo planejado. |
-| **Nível 4** | **Alto** | **Ciano** | `Fore.CYAN` | Reservatório com margem ampla; entrada reduzida a 50%. |
-| **Nível 5** | **Muito alto (alerta)** | **Azul** | `Fore.BLUE` | Capacidade máxima atingida; vertedouro acionado contra transbordamento. |
+| **Nível 1** | **Muito baixo (crítico)** | **Vermelho** | `Fore.RED` | Risco iminente de desabastecimento. |
+| **Nível 2** | **Baixo** | **Amarelo** | `Fore.YELLOW` | Atenção para acionamento de reposição. |
+| **Nível 3** | **Médio** | **Verde** | `Fore.GREEN` | Volume ideal para operação regular. |
+| **Nível 4** | **Alto** | **Ciano** | `Fore.CYAN` | Nível seguro com margem satisfatória. |
+| **Nível 5** | **Muito alto (alerta)** | **Azul** | `Fore.BLUE` | Risco iminente de transbordamento. |
 
 ---
 
-## 🏗️ 3. Estrutura Arquitetural do Código
+## 🏗️ 3. Estrutura Modular das Funções e Procedimentos
 
-O projeto foi codificado respeitando as boas práticas de **Programação Estruturada** e o **Princípio da Responsabilidade Única (SRP)**:
-
-```mermaid
-flowchart TD
-    A["Início: if __name__ == '__main__'"] --> B["limpar_tela()"]
-    B --> C["exibir_cabecalho()"]
-    C --> D["Definição da Lista: niveis_reservatorio"]
-    D --> E["simular_monitoramento(lista_niveis)"]
-    E --> F["Para cada nível na lista:"]
-    F --> G["definir_cor_nivel(nivel) -> Retorna Cor"]
-    F --> H["gerar_barra_nivel(nivel) -> Retorna Barra ASCII"]
-    G & H --> I["exibir_alerta_nivel(item)"]
-    I --> J["Style.RESET_ALL (Restaura Terminal)"]
-    J --> K["Próximo nível (Loop)"]
-    K --> L["Finalização: Status OK e Terminal Restaurado"]
-```
-
-### Funções e Procedimentos Implementados:
-
-1. **`limpar_tela()`** *(Procedimento)*: Limpeza limpa e multiplataforma do console (`cls` no Windows / `clear` no Linux/Unix).
-2. **`exibir_cabecalho()`** *(Procedimento)*: Exibição estilizada da interface de telemetria.
-3. **`definir_cor_nivel(nivel)`** *(Função com retorno)*: Mapeia puramente o número do nível para a cor ANSI correspondente do `colorama`.
-4. **`gerar_barra_nivel(nivel, max_nivel=5)`** *(Função utilitária)*: Converte o nível discreto em uma barra visual de escala ASCII (ex: `[###--] 60%`).
-5. **`exibir_alerta_nivel(item_reservatorio)`** *(Procedimento)*: Formata a saída combinando cor, texto e a restauração explícita (`Style.RESET_ALL`).
-6. **`simular_monitoramento(lista_niveis, intervalo_segundos)`** *(Procedimento)*: Itera sobre a lista com temporização realista de telemetria.
+1. **`limpar_tela()`** *(Procedimento - Agenda 10 e 11)*: Limpa o console utilizando a biblioteca padrão `os` (`cls` no Windows / `clear` no Linux).
+2. **`exibir_cabecalho()`** *(Procedimento - Agenda 10 e 11)*: Apresenta o cabeçalho estilizado com `Fore.CYAN`.
+3. **`definir_cor_mensagem(nivel)`** *(Função com retorno - Agenda 10, 06 e 07)*: Recebe o nível (1 a 5) e retorna exclusivamente a cor ANSI correspondente do `colorama` via `if / elif / else`. Não executa prints, respeitando o princípio de responsabilidade única.
+4. **`exibir_situacao_reservatorio(nivel, situacao)`** *(Procedimento - Agenda 10 e 11)*: Imprime a linha com a cor obtida pela função e executa imediatamente `Style.RESET_ALL`.
+5. **`simular_monitoramento(lista_niveis, lista_mensagens, intervalo_segundos)`** *(Procedimento - Agenda 08, 09 e 11)*: Itera pelas listas usando `for i in range(len(lista_niveis))` e cria pausas realistas com `time.sleep()`.
 
 ---
 
-## 💻 4. Evidência de Execução no Terminal
+## 💻 4. Evidência de Execução Real no Terminal
 
 ```text
-====================================================================
-      SISTEMA DE MONITORAMENTO DE NÍVEIS DE ÁGUA - RESERVATÓRIO
-             Telemetria e Controle de Risco Operacional
-====================================================================
+=================================================================
+   SISTEMA DE MONITORAMENTO DE NÍVEIS DE ÁGUA - RESERVATÓRIO
+        Telemetria e Controle Automatizado em Terminal
+=================================================================
 
-Iniciando ciclo de telemetria e diagnóstico dos sensores...
+Iniciando leitura e diagnóstico dos sensores em tempo real...
 
---------------------------------------------------------------------
->> Nível 1: Muito baixo (crítico)  Escala: [#----]  20%   | Status: Válvulas de emergência abertas. Risco iminente de desabastecimento.
->> Nível 2: Baixo                  Escala: [##---]  40%   | Status: Bomba de captação secundária acionada. Atenção para reposição.
->> Nível 3: Médio                  Escala: [###--]  60%   | Status: Capacidade estável. Volume ideal para consumo planejado.
->> Nível 4: Alto                   Escala: [####-]  80%   | Status: Reservatório com margem ampla. Entrada de água operando em 50%.
->> Nível 5: Muito alto (alerta)    Escala: [#####] 100%   | Status: Capacidade máxima atingida! Vertedouro ativado contra transbordamento.
---------------------------------------------------------------------
+-----------------------------------------------------------------
+>> Nível 1: Muito baixo (crítico) - Risco de desabastecimento
+>> Nível 2: Baixo - Atenção para acionamento de reposição
+>> Nível 3: Médio - Volume ideal para operação regular
+>> Nível 4: Alto - Nível seguro com margem satisfatória
+>> Nível 5: Muito alto (alerta) - Risco iminente de transbordamento
+-----------------------------------------------------------------
 
-[OK] Ciclo de monitoramento concluido com sucesso!
-Estilo padrao do terminal restaurado com sucesso.
+[OK] Ciclo de monitoramento concluído com sucesso!
+Estilo padrão do terminal devidamente restaurado.
 ```
 
 ---
 
 ## 🚀 5. Como Executar o Projeto
 
-### Pré-requisitos
-- Python 3.8 ou superior instalado.
-- Terminal com suporte a códigos ANSI (CMD, PowerShell, Windows Terminal ou Bash).
-
-### Passo 1: Clonar o Repositório
 ```bash
-git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
+# Entrar no diretório
 cd AGENDA_11
-```
 
-### Passo 2: Instalar a Biblioteca `colorama`
-```bash
-pip install -r requirements.txt
-# Ou diretamente:
+# Instalar dependência (Agenda 11)
 pip install colorama
-```
 
-### Passo 3: Executar o Programa
-```bash
+# Executar o programa
 python IraciBertoGomes_Ag11_DSI.py
 ```
-
----
-
-## 🎓 6. Competências e Habilidades Atendidas
-
-- **Competência 4:** Elaborar sistemas aplicando princípios e paradigmas de programação.
-- **Habilidade 4.1:** Codificar programas, utilizando técnica de programação estruturada (decomposição funcional, passagem de parâmetros e escopo local).
-- **Habilidade 4.2:** Depurar e versionar programas, utilizando ambiente de desenvolvimento integrado (Git, GitHub e controle de versão semântico).
