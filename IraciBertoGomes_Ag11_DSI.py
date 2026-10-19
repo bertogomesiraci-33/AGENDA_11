@@ -2,6 +2,7 @@
 Sistema de Monitoramento de Níveis de Água no Reservatório
 Telemetria e Controle de Risco Operacional
 """
+
 import os
 import sys
 import time
@@ -15,6 +16,7 @@ if sys.platform == 'win32':
         sys.stdout.reconfigure(encoding='utf-8')
     except AttributeError:
         pass
+
 init(autoreset=True)
 
 # Lista de cores correspondente aos níveis de 1 a 5
@@ -29,8 +31,8 @@ def limpar_tela():
 def exibir_cabecalho():
     """Exibe o cabeçalho formatado do sistema."""
     print(Style.BRIGHT + Fore.CYAN + "=" * 68)
-    print(" SISTEMA DE MONITORAMENTO DE NÍVEIS DE ÁGUA - RESERVATÓRIO")
-    print(" Telemetria e Controle de Risco Operacional")
+    print("      SISTEMA DE MONITORAMENTO DE NÍVEIS DE ÁGUA - RESERVATÓRIO")
+    print("             Telemetria e Controle de Risco Operacional")
     print("=" * 68 + Style.RESET_ALL + "\n")
 
 
@@ -73,10 +75,12 @@ def simular_leitura_aleatoria_sensor(lista_niveis, lista_mensagens):
 if __name__ == "__main__":
     limpar_tela()
     exibir_cabecalho()
+
     # Cálculo da capacidade do reservatório cilíndrico (raio=2.5m, altura=4.0m)
     capacidade = calcular_capacidade_reservatorio(raio_m=2.5, altura_m=4.0)
     print(f"Capacidade Total Calculada (math.pi e math.pow): {capacidade:,.0f} litros".replace(",", "."))
     print("-" * 68 + "\n")
+
     # Listas de telemetria
     niveis = [1, 2, 3, 4, 5]
     mensagens = [
@@ -86,9 +90,11 @@ if __name__ == "__main__":
         "Alto - Nível seguro com margem de abastecimento satisfatória",
         "Muito alto (alerta) - Risco de transbordamento! Vertedouro ativado"
     ]
+
     # Simulações
     simular_ciclo_completo(niveis, mensagens, intervalo=0.8)
     simular_leitura_aleatoria_sensor(niveis, mensagens)
+
     # Conclusão
     print(Fore.GREEN + Style.BRIGHT + "[OK] Monitoramento concluído com sucesso!" + Style.RESET_ALL)
     print("Estilo padrão do terminal devidamente restaurado com Style.RESET_ALL.\n")
