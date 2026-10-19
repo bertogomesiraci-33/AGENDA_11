@@ -87,6 +87,7 @@ Capacidade Total Calculada (math.pi e math.pow): 78.540 litros
 --------------------------------------------------------------------
 
 ETAPA 1: Diagnóstico Sequencial dos 5 Níveis de Água (Laço FOR e Listas)
+
 --------------------------------------------------------------------
 >> Nível 1: Muito baixo (crítico) - Risco iminente de desabastecimento
 >> Nível 2: Baixo - Atenção para acionamento da captação secundária
