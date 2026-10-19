@@ -54,7 +54,7 @@ def exibir_situacao_reservatorio(nivel, situacao):
 
 def simular_ciclo_completo(lista_niveis, lista_mensagens, intervalo=0.8):
     """Percorre sequencialmente os níveis e alertas através do laço for."""
-    print(Style.BRIGHT + "ETAPA 1: Diagnóstico Sequencial dos 5 Níveis de Água (Laço FOR e Listas)" + Style.RESET_ALL)
+    print(Style.BRIGHT + "ETAPA 1: Diagnóstico Sequencial dos 5 Níveis de Água (Laço FOR e Listas)\n" + Style.RESET_ALL)
     print("-" * 68)
     for i in range(len(lista_niveis)):
         exibir_situacao_reservatorio(lista_niveis[i], lista_mensagens[i])
