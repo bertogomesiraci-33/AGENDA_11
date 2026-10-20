@@ -73,7 +73,7 @@ O sistema integra os conteúdos ensinados nas **Apostilas de Desenvolvimento de 
 
 <!-- ================================================================= -->
 <!-- INSIRA O CAMINHO DA SUA IMAGEM DENTRO DOS PARÊNTESES ABAIXO:       -->
-![Captura do Resultado no Terminal](imagens\captura-resultado-terminal)
+![Captura do Resultado no Terminal](Downloads/captura-resultado-terminal)
 <!-- Exemplo: ![Captura do Resultado no Terminal](capturar-resultado-terminal.PNG) -->
 <!-- ================================================================= -->
 
