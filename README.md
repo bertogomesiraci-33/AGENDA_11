@@ -20,6 +20,8 @@
 ```
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![Math](https://img.shields.io/badge/M%C3%B3dulo-math-blueviolet.svg)](https://docs.python.org/3/library/math.html)
+[![Random](https://img.shields.io/badge/M%C3%B3dulo-random-orange.svg)](https://docs.python.org/3/library/random.html)
 [![Colorama](https://img.shields.io/badge/Colorama-0.4.6-2ecc71.svg)](https://pypi.org/project/colorama/)
 [![Instituição](https://img.shields.io/badge/ETEC-Centro%20Paula%20Souza-red.svg)](https://www.cps.sp.gov.br/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
