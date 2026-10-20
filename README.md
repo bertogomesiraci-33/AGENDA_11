@@ -48,11 +48,11 @@ Software desenvolvido em Python para telemetria automatizada de reservatório in
 
 | Nível | Situação Operacional | Cor Colorama |
 | :---: | :--- | :--- |
-| **1** | Muito baixo (crítico) - Risco iminente de desabastecimento | `Fore.RED` (Vermelho) |
-| **2** | Baixo - Atenção para acionamento da captação secundária | `Fore.YELLOW` (Amarelo) |
-| **3** | Médio - Volume ideal para operação regular | `Fore.GREEN` (Verde) |
-| **4** | Alto - Nível seguro com margem de abastecimento satisfatória | `Fore.CYAN` (Ciano) |
-| **5** | Muito alto (alerta) - Risco de transbordamento! Vertedouro ativado | `Fore.BLUE` (Azul) |
+| **1** | Muito baixo (crítico) - Risco iminente de desabastecimento | `Fore.RED` (🔴 $\color{red}\textbf{Vermelho}$) |
+| **2** | Baixo - Atenção para acionamento da captação secundária | `Fore.YELLOW` (🟡 $\color{#D4AC0D}\textbf{Amarelo}$) |
+| **3** | Médio - Volume ideal para operação regular | `Fore.GREEN` (🟢 $\color{green}\textbf{Verde}$) |
+| **4** | Alto - Nível seguro com margem de abastecimento satisfatória | `Fore.CYAN` (🔷 $\color{#00bcd4}\textbf{Ciano}$) |
+| **5** | Muito alto (alerta) - Risco de transbordamento! Vertedouro ativado | `Fore.BLUE` (🔵 $\color{blue}\textbf{Azul}$) |
 
 ---
 
