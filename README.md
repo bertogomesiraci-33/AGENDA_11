@@ -19,6 +19,12 @@
              [ VÁLVULA ]
 ```
 
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![Colorama](https://img.shields.io/badge/Colorama-0.4.6-2ecc71.svg)](https://pypi.org/project/colorama/)
+[![Instituição](https://img.shields.io/badge/ETEC-Centro%20Paula%20Souza-red.svg)](https://www.cps.sp.gov.br/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen.svg)]()
+
 **Desenvolvimento de Sistemas I — Agenda 11 | ETEC / CPS**  
 **Estudante:** Iraci Berto Gomes | **Script:** `IraciBertoGomes_Ag11_DSI.py`
 
